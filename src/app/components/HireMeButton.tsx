@@ -32,7 +32,7 @@ export default function HireMeButton({ isSticky }: TProps) {
             variants={isMobile ? slideInFromTop(1) : slideInFromLeft(1)}
             initial="hidden"
             animate="visible"
-            className="flex justify-center lg:justify-start lg:py-6"
+            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 lg:py-6"
         >
             <Link
                 href={"#contact"}
@@ -63,6 +63,21 @@ export default function HireMeButton({ isSticky }: TProps) {
              px-4 py-2 rounded-md w-full h-full relative z-10"
                     >
                         HIRE ME
+                    </button>
+                </div>
+            </Link>
+
+            <Link
+                href={"/resume.pdf"}
+                target="_blank"
+                className={`${!isSticky && 'lg:hidden'} `}
+            >
+                <div className="relative w-28 h-9 lg:w-32 lg:h-10 overflow-hidden p-[1px] rounded-sm hover:scale-110 transition-all duration-300 ease-in-out border border-[rgba(255,255,255,0.2)] bg-white/5 backdrop-blur-sm group">
+                    <button
+                        className="text-white text-[10px] lg:text-[11px] font-bold tracking-widest
+             px-4 py-2 rounded-md w-full h-full relative z-10 group-hover:bg-white/10 transition-colors"
+                    >
+                        RESUME
                     </button>
                 </div>
             </Link>

@@ -20,8 +20,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import SectionLabel from "./SectionLabel";
-import { sendMail } from "../utils/sendMail";
 import { toast } from "sonner";
+import { sendMail } from "../utils/sendMail";
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -53,39 +53,34 @@ export default function ContactForm() {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         setIsLoading(true);
-        const response = await sendMail(
-            values.name,
-            values.email,
-            values.message
-        );
-        setIsLoading(false);
+        
+        try {
+            const result = await sendMail(values.name, values.email, values.message);
+            setIsLoading(false);
 
-            if (response && response.success) {
-            toast.success(response.message, {
-                description: "Your message has been sent. I will get back to you as soon as possible.",
+            if (result.success) {
+                toast.success("Message sent successfully!", {
+                    description: result.message,
+                    duration: 5000,
+                    position: isMobile ? "top-center" : "bottom-right",
+                });
+                form.reset();
+            } else {
+                toast.error(result.message || "Failed to send message", {
+                    description: "Please try again later or contact me via social media.",
+                    duration: 5000,
+                    position: isMobile ? "top-center" : "bottom-right",
+                });
+            }
+        } catch (error) {
+            setIsLoading(false);
+            console.error("Submission Error:", error);
+            toast.error("Connection Error", {
+                description: "An unexpected error occurred. Please try again later.",
                 duration: 5000,
                 position: isMobile ? "top-center" : "bottom-right",
-                classNames: {
-                    icon: "text-green-500",
-                    toast: "bg-background text-slate-100 border-slate-900",
-                    description: "text-slate-350",
-                    
-                }
-            });
-        } else if (response && !response.success) {
-            toast.error(response.message, {
-                description: "Please try again later.",
-                duration: 5000,
-                position: isMobile ? "top-center" : "bottom-right",
-                classNames: {
-                    icon: "text-red-600",
-                    toast: "bg-background text-slate-100 border-slate-900",
-                    description: "text-slate-350",
-                    
-                }
             });
         }
-        form.reset();
     }
 
     return (
@@ -113,7 +108,7 @@ export default function ContactForm() {
                                     </FormLabel>
                                     <FormControl>
                                         <Input
-                                            placeholder="Alvin Chang"
+                                            placeholder="Deepanshi Goyal"
                                             {...field}
                                             className="bg-[rgba(255,255,255,0.01)] border-[rgba(255,255,255,0.1)] text-white text-xs p-2 rounded-sm focus:ring-orange-500"
                                         />
@@ -132,7 +127,7 @@ export default function ContactForm() {
                                     </FormLabel>
                                     <FormControl>
                                         <Input
-                                            placeholder="alvin@studioaurora.io"
+                                            placeholder="Deepanshi@gmail.com"
                                             {...field}
                                             className="bg-[rgba(255,255,255,0.01)] border-[rgba(255,255,255,0.1)] text-white text-xs p-2 rounded-sm focus:ring-orange-500"
                                         />

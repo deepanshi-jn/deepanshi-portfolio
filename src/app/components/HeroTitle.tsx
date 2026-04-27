@@ -19,12 +19,12 @@ export default function HeroTitle() {
             >
                 <Image
                     src="/logox.png"
-                    alt="Alvin Chang Portfolio Logo"
+                    alt="Deepanshi Goyal Portfolio Logo"
                     className="w-7 h-7 mr-1 rounded-md"
                     width={28}
                     height={28}
                 />
-                <h1>Hey there, I'm Alvin! 👋</h1>
+                <h1>Hey there, I'm Deepanshi! 👋</h1>
             </MotionTag>
             <MotionTag
                 tag="h1"
