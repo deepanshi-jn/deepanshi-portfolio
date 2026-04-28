@@ -91,7 +91,7 @@ const OpenToWorkBanner = () => {
                                 ))}
                             </div>
                             <div className="flex gap-2">
-                                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                                <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer">
                                     <button className="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white text-sm font-medium rounded-md transition-colors">
                                         Resume
                                     </button>

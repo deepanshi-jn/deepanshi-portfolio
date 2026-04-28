@@ -68,7 +68,7 @@ export default function HireMeButton({ isSticky }: TProps) {
             </Link>
 
             <Link
-                href={"/resume.pdf"}
+                href={"/Resume.pdf"}
                 target="_blank"
                 className={`${!isSticky && 'lg:hidden'} `}
             >
